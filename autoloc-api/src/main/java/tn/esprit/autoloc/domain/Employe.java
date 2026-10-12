@@ -27,4 +27,8 @@ public class Employe {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private RoleEmploye role;
+
+    // Côté propriétaire : clé étrangère agence_id_agence
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Agence agence;
 }

@@ -7,6 +7,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "vehicule")
@@ -39,4 +43,34 @@ public class Vehicule {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private StatutVehicule statut;
+
+    // Côté propriétaire : clé étrangère agence_id_agence (aucune cascade, le véhicule survit à son agence)
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Agence agence;
+
+    // Côté propriétaire du @ManyToMany : table de jointure vehicule_equipement
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "vehicule_equipement",
+            joinColumns = @JoinColumn(name = "id_vehicule"),
+            inverseJoinColumns = @JoinColumn(name = "id_equipement"))
+    private Set<Equipement> equipements = new HashSet<>();
+
+    // Côté inverse : l'historique de maintenance est enregistré avec le véhicule
+    @OneToMany(mappedBy = "vehicule", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    private List<Maintenance> maintenances = new ArrayList<>();
+
+    public void addEquipement(Equipement equipement) {
+        equipements.add(equipement);
+        equipement.getVehicules().add(this);
+    }
+
+    public void removeEquipement(Equipement equipement) {
+        equipements.remove(equipement);
+        equipement.getVehicules().remove(this);
+    }
+
+    public void addMaintenance(Maintenance maintenance) {
+        maintenances.add(maintenance);
+        maintenance.setVehicule(this);
+    }
 }

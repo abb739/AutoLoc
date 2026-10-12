@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "equipement")
 @Getter
@@ -20,4 +23,8 @@ public class Equipement {
 
     @Column(nullable = false, unique = true, length = 100)
     private String libelle;
+
+    // Côté inverse : un équipement est partagé entre plusieurs véhicules, aucune cascade
+    @ManyToMany(mappedBy = "equipements", fetch = FetchType.LAZY)
+    private Set<Vehicule> vehicules = new HashSet<>();
 }
