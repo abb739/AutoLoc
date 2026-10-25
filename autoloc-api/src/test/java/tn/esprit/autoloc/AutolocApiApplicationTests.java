@@ -8,6 +8,7 @@ class AutolocApiApplicationTests {
 
     @Test
     void contextLoads() {
+        // Vide volontairement : le test échoue si le contexte Spring ne démarre pas
     }
 
 }
