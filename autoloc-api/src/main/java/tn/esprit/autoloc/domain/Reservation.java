@@ -1,6 +1,7 @@
 package tn.esprit.autoloc.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,6 +22,7 @@ import lombok.Setter;
 import java.time.LocalDate;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "reservation")
 @Getter
 @Setter
@@ -43,12 +45,10 @@ public class Reservation {
     private StatutReservation statut;
 
     // Côté propriétaire : clé étrangère client_id_client
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private Client client;
 
     // Unidirectionnelle : clé étrangère vehicule_id_vehicule
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private Vehicule vehicule;
 

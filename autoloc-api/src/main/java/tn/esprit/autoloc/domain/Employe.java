@@ -1,6 +1,5 @@
 package tn.esprit.autoloc.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -39,7 +38,6 @@ public class Employe {
     private RoleEmploye role;
 
     // Côté propriétaire : clé étrangère agence_id_agence
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private Agence agence;
 }

@@ -1,6 +1,7 @@
 package tn.esprit.autoloc.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "contrat")
 @Getter
 @Setter
@@ -43,12 +45,11 @@ public class Contrat {
     private boolean valide;
 
     // Côté propriétaire du @OneToOne : porte la clé étrangère reservation_id_reservation
-    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
     private Reservation reservation;
 
     // Composition : un paiement n'existe que rattaché à son contrat
-    @JsonIgnore
+    @JsonManagedReference("contrat-paiements")
     @OneToMany(mappedBy = "contrat", cascade = CascadeType.ALL,
             orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Paiement> paiements = new ArrayList<>();

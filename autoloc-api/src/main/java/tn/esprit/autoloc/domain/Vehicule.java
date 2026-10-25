@@ -1,6 +1,7 @@
 package tn.esprit.autoloc.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,6 +29,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "vehicule")
 @Getter
 @Setter
@@ -60,12 +62,10 @@ public class Vehicule {
     private StatutVehicule statut;
 
     // Côté propriétaire : clé étrangère agence_id_agence (aucune cascade, le véhicule survit à son agence)
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private Agence agence;
 
     // Côté propriétaire du @ManyToMany : table de jointure vehicule_equipement
-    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "vehicule_equipement",
             joinColumns = @JoinColumn(name = "id_vehicule"),
