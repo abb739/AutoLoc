@@ -1,5 +1,6 @@
 package tn.esprit.autoloc.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -42,14 +43,17 @@ public class Reservation {
     private StatutReservation statut;
 
     // Côté propriétaire : clé étrangère client_id_client
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private Client client;
 
     // Unidirectionnelle : clé étrangère vehicule_id_vehicule
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private Vehicule vehicule;
 
     // Côté inverse du @OneToOne : le contrat suit le cycle de vie de la réservation
+    @JsonIgnore
     @OneToOne(mappedBy = "reservation", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Contrat contrat;
 

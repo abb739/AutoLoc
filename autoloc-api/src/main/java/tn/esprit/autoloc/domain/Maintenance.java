@@ -1,5 +1,6 @@
 package tn.esprit.autoloc.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -36,6 +37,7 @@ public class Maintenance {
     private String description;
 
     // Côté propriétaire : clé étrangère vehicule_id_vehicule
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private Vehicule vehicule;
 }

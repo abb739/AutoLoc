@@ -1,5 +1,6 @@
 package tn.esprit.autoloc.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -59,10 +60,12 @@ public class Vehicule {
     private StatutVehicule statut;
 
     // Côté propriétaire : clé étrangère agence_id_agence (aucune cascade, le véhicule survit à son agence)
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private Agence agence;
 
     // Côté propriétaire du @ManyToMany : table de jointure vehicule_equipement
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "vehicule_equipement",
             joinColumns = @JoinColumn(name = "id_vehicule"),
@@ -70,6 +73,7 @@ public class Vehicule {
     private Set<Equipement> equipements = new HashSet<>();
 
     // Côté inverse : l'historique de maintenance est enregistré avec le véhicule
+    @JsonIgnore
     @OneToMany(mappedBy = "vehicule", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<Maintenance> maintenances = new ArrayList<>();
 

@@ -1,4 +1,4 @@
 /**
- * Contrôleurs REST — seront développés à l'Atelier 5.
+ * Contrôleurs REST (Atelier 5) et traduction des exceptions en réponses HTTP.
  */
 package tn.esprit.autoloc.web.controller;

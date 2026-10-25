@@ -1,5 +1,6 @@
 package tn.esprit.autoloc.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -42,10 +43,12 @@ public class Contrat {
     private boolean valide;
 
     // Côté propriétaire du @OneToOne : porte la clé étrangère reservation_id_reservation
+    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
     private Reservation reservation;
 
     // Composition : un paiement n'existe que rattaché à son contrat
+    @JsonIgnore
     @OneToMany(mappedBy = "contrat", cascade = CascadeType.ALL,
             orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Paiement> paiements = new ArrayList<>();
