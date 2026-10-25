@@ -24,7 +24,7 @@ Les neuf interfaces du package `tn.esprit.autoloc.repository` sont préfixées `
 
 ## B. Comportement du CRUD observé dans les logs SQL
 
-Programme de démonstration sur `IContratRepository` (Contrat avec deux paiements), exécuté sur MySQL dans une transaction annulée à la fin. Requêtes relevées dans les logs `org.hibernate.SQL` :
+Programme de démonstration `ContratCrudDemoTest` (dossier `src/test`) sur `IContratRepository` : un contrat avec deux paiements, exécuté sur MySQL dans une transaction annulée à la fin. Requêtes relevées dans les logs Hibernate :
 
 | Appel | SQL observé | À retenir |
 |---|---|---|
@@ -48,3 +48,23 @@ Programme de démonstration sur `IContratRepository` (Contrat avec deux paiement
 S2208 et S114 ne font pas partie du profil par défaut (*Sonar way*) : elles s'activent dans *Settings > Tools > SonarQube for IDE > Rules*, où l'on règle aussi l'expression régulière de S114.
 
 Autres points vérifiés : aucune entité n'utilise `@Data` (`@Getter`/`@Setter` ciblés, voir `fetch-strategy.md`), et aucune interface repository ne porte d'annotation `@Repository` inutile.
+
+## D. Captures d'écran
+
+**1. Démarrage : `Found 9 JPA repository interfaces`** (profil `dev`)
+
+![Démarrage de l'application](screenshots/01-demarrage-9-repositories.png)
+
+**2. Couche Repository : neuf interfaces `I…Repository`, toutes en `JpaRepository<Entité, Long>`**
+
+![Package repository](screenshots/02-couche-repository.png)
+
+**3. CRUD sur `IContratRepository` et logs SQL** (`ContratCrudDemoTest`)
+
+![CRUD et logs SQL](screenshots/03-crud-logs-sql.png)
+
+**4. Commit et push sur le dépôt « AutoLoc »**
+
+![Commit Git](screenshots/04-commit-git.png)
+
+**5. SonarQube for IDE** : capture du panneau d'analyse à ajouter (`screenshots/05-sonarqube-for-ide.png`).
