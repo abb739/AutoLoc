@@ -116,60 +116,60 @@ Captures prises dans Postman (collection « AutoLoc », environnement « local �
 
 **6. Lister — `GET /api/contrats` : 200 OK, tableau JSON, test « Statut 200 » réussi**
 
-![Lister les contrats](screenshots/06-postman-lister-contrats-200.png)
+![Lister les contrats](screenshots/atelier-5/06-postman-lister-contrats-200.png)
 
 **7. Créer — `POST /api/contrats` : 201 Created, identifiant généré mémorisé dans `contratId`**
 
-![Créer un contrat](screenshots/07-postman-creer-contrat-201.png)
+![Créer un contrat](screenshots/atelier-5/07-postman-creer-contrat-201.png)
 
 **8. Consulter — `GET /api/contrats/9999` : 404 Not Found, corps d'erreur JSON (statut, message, horodatage)**
 
-![Contrat inexistant](screenshots/08-postman-contrat-inexistant-404.png)
+![Contrat inexistant](screenshots/atelier-5/08-postman-contrat-inexistant-404.png)
 
 **9. Modifier — `PUT /api/contrats/{{contratId}}` : 200 OK, montant mis à jour (480 → 520)**
 
-![Modifier un contrat](screenshots/09-postman-modifier-contrat-200.png)
+![Modifier un contrat](screenshots/atelier-5/09-postman-modifier-contrat-200.png)
 
 **10. Supprimer — `DELETE /api/contrats/{{contratId}}` : 204 No Content, sans corps**
 
-![Supprimer un contrat](screenshots/10-postman-supprimer-contrat-204.png)
+![Supprimer un contrat](screenshots/atelier-5/10-postman-supprimer-contrat-204.png)
 
 **11. Cascade — `POST /api/contrats` avec deux paiements : 201, paiements créés avec le contrat**
 
-![Contrat avec paiements](screenshots/11-postman-contrat-avec-paiements-201.png)
+![Contrat avec paiements](screenshots/atelier-5/11-postman-contrat-avec-paiements-201.png)
 
 **12. Cascade PERSIST — `GET /api/paiements` : les deux paiements existent sans avoir été créés séparément**
 
-![Cascade PERSIST](screenshots/12-postman-cascade-persist.png)
+![Cascade PERSIST](screenshots/atelier-5/12-postman-cascade-persist.png)
 
 **13. Cascade REMOVE — après suppression du contrat, `GET /api/paiements/{id}` : 404**
 
-![Cascade REMOVE](screenshots/13-postman-cascade-remove-404.png)
+![Cascade REMOVE](screenshots/atelier-5/13-postman-cascade-remove-404.png)
 
 **14. Lecture seule — `POST /api/paiements` : 405 Method Not Allowed**
 
-![Paiement 405](screenshots/14-postman-paiement-405.png)
+![Paiement 405](screenshots/atelier-5/14-postman-paiement-405.png)
 
 **15. Collection Runner : 84 requêtes, 102 tests réussis, 0 échec**
 
-![Runner](screenshots/15-postman-runner-102-tests.png)
+![Runner](screenshots/atelier-5/15-postman-runner-102-tests.png)
 
 **16. Swagger UI — `/api/swagger-ui.html` : titre, version et description d'`OpenApiConfig`, un groupe `@Tag` par contrôleur**
 
-![Swagger groupes](screenshots/16-swagger-groupes.png)
+![Swagger groupes](screenshots/atelier-5/16-swagger-groupes.png)
 
 **17. Swagger UI — Try it out sur `GET /contrats/{id}` avec 9999 : requête curl, code 404 et corps**
 
-![Swagger Try it out](screenshots/17-swagger-try-it-out-404.png)
+![Swagger Try it out](screenshots/atelier-5/17-swagger-try-it-out-404.png)
 
 **18. Swagger UI — section Schemas : description de `Contrat` déduite de l'entité**
 
-![Swagger schéma Contrat](screenshots/18-swagger-schema-contrat.png)
+![Swagger schéma Contrat](screenshots/atelier-5/18-swagger-schema-contrat.png)
 
 **19. SonarQube for IDE sur `web.controller` avant correction : 50 anomalies (S1710 sélectionnée)**
 
-![SonarQube avant](screenshots/19-sonarqube-controller-avant.png)
+![SonarQube avant](screenshots/atelier-5/19-sonarqube-controller-avant.png)
 
 **20. Après correction : 16 anomalies, toutes S4684 (entité exposée), conservées jusqu'aux DTO**
 
-![SonarQube après](screenshots/20-sonarqube-controller-apres.png)
+![SonarQube après](screenshots/atelier-5/20-sonarqube-controller-apres.png)

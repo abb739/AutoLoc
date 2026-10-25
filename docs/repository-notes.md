@@ -55,20 +55,20 @@ Captures prises dans IntelliJ IDEA.
 
 **1. Démarrage depuis IntelliJ (Run `AutolocApiApplication`) : `Found 9 JPA repository interfaces`**
 
-![Démarrage de l'application](screenshots/01-demarrage-9-repositories.png)
+![Démarrage de l'application](screenshots/atelier-3/01-demarrage-9-repositories.png)
 
 **2. Couche Repository : neuf interfaces `I…Repository`, toutes en `JpaRepository<Entité, Long>`**
 
-![Package repository](screenshots/02-couche-repository.png)
+![Package repository](screenshots/atelier-3/02-couche-repository.png)
 
 **3. CRUD sur `IContratRepository` et logs SQL** (`ContratCrudDemoTest` lancé depuis IntelliJ, 1 test réussi)
 
-![CRUD et logs SQL](screenshots/03-crud-logs-sql.png)
+![CRUD et logs SQL](screenshots/atelier-3/03-crud-logs-sql.png)
 
 **4. Historique Git : commit de l'Atelier 3 et ses neuf repositories**
 
-![Commit Git](screenshots/04-commit-git.png)
+![Commit Git](screenshots/atelier-3/04-commit-git.png)
 
 **5. SonarQube for IDE : aucune anomalie sur `ContratCrudDemoTest`** (S2699 corrigée par des assertions AssertJ)
 
-![SonarQube for IDE](screenshots/05-sonarqube-for-ide.png)
+![SonarQube for IDE](screenshots/atelier-3/05-sonarqube-for-ide.png)
