@@ -15,6 +15,8 @@ import tn.esprit.autoloc.repository.IContratRepository;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @SpringBootTest
 @Transactional
 class ContratCrudDemoTest {
@@ -34,22 +36,27 @@ class ContratCrudDemoTest {
         sync();
         Long id = contrat.getIdContrat();
         step("   -> id attribue par MySQL : " + id);
+        assertThat(id).isNotNull();
 
         step("2. findById(" + id + ")");
         Contrat lu = contratRepository.findById(id).orElseThrow();
         step("3. getPaiements() : chargement LAZY au premier acces");
         step("   -> " + lu.getPaiements().size() + " paiements");
+        assertThat(lu.getPaiements()).hasSize(2);
 
         step("4. removePaiement(p) puis save(contrat) : orphanRemoval");
         lu.removePaiement(lu.getPaiements().get(0));
         contratRepository.save(lu);
         sync();
+        assertThat(contratRepository.findById(id).orElseThrow().getPaiements()).hasSize(1);
 
         step("5. findById(-1) : Optional vide, present = " + contratRepository.findById(-1L).isPresent());
+        assertThat(contratRepository.findById(-1L)).isEmpty();
 
         step("6. deleteById(" + id + ") : cascade REMOVE sur les paiements");
         contratRepository.deleteById(id);
         sync();
+        assertThat(contratRepository.existsById(id)).isFalse();
 
         step("7. deleteById(-1) : aucune exception (Spring Data 3)");
         contratRepository.deleteById(-1L);

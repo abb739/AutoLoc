@@ -51,7 +51,9 @@ Autres points vérifiés : aucune entité n'utilise `@Data` (`@Getter`/`@Setter`
 
 ## D. Captures d'écran
 
-**1. Démarrage : `Found 9 JPA repository interfaces`** (profil `dev`)
+Captures prises dans IntelliJ IDEA.
+
+**1. Démarrage depuis IntelliJ (Run `AutolocApiApplication`) : `Found 9 JPA repository interfaces`**
 
 ![Démarrage de l'application](screenshots/01-demarrage-9-repositories.png)
 
@@ -59,12 +61,14 @@ Autres points vérifiés : aucune entité n'utilise `@Data` (`@Getter`/`@Setter`
 
 ![Package repository](screenshots/02-couche-repository.png)
 
-**3. CRUD sur `IContratRepository` et logs SQL** (`ContratCrudDemoTest`)
+**3. CRUD sur `IContratRepository` et logs SQL** (`ContratCrudDemoTest` lancé depuis IntelliJ, 1 test réussi)
 
 ![CRUD et logs SQL](screenshots/03-crud-logs-sql.png)
 
-**4. Commit et push sur le dépôt « AutoLoc »**
+**4. Historique Git : commit de l'Atelier 3 et ses neuf repositories**
 
 ![Commit Git](screenshots/04-commit-git.png)
 
-**5. SonarQube for IDE** : capture du panneau d'analyse à ajouter (`screenshots/05-sonarqube-for-ide.png`).
+**5. SonarQube for IDE : aucune anomalie sur `ContratCrudDemoTest`** (S2699 corrigée par des assertions AssertJ)
+
+![SonarQube for IDE](screenshots/05-sonarqube-for-ide.png)
